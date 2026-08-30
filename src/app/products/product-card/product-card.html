@@ -18,10 +18,23 @@
       <strong class="product-card__price">
         {{ product().price | currency: 'USD' : 'symbol' : '1.2-2' }}
       </strong>
-      <span class="product-card__rating" [attr.aria-label]="product().rating.rate + ' out of 5 stars'">
-        <span aria-hidden="true">★</span>
-        {{ product().rating.rate | number: '1.1-1' }}
+      <span class="product-card__rating">
+        <span class="visually-hidden">
+          {{ product().rating.rate | number: '1.1-1' }} out of 5 stars
+        </span>
+        <span aria-hidden="true">
+          ★ {{ product().rating.rate | number: '1.1-1' }}
+        </span>
       </span>
     </div>
+
+    <a
+      class="product-card__action"
+      [routerLink]="['/products', product().id]"
+      [attr.aria-label]="'View details for ' + product().title"
+    >
+      View details
+      <span aria-hidden="true">→</span>
+    </a>
   </div>
 </article>

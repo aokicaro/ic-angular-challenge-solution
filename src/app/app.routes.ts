@@ -15,6 +15,14 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'products/:id',
+    title: 'Product details | Product Catalog',
+    loadComponent: () =>
+      import('./products/product-detail/product-detail').then(
+        ({ ProductDetail }) => ProductDetail,
+      ),
+  },
+  {
     path: '**',
     redirectTo: 'products',
   },

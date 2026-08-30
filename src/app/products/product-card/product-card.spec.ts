@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 import { Product } from '../models/product.model';
 import { ProductCard } from './product-card';
 
@@ -18,6 +19,7 @@ describe('ProductCard', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ProductCard],
+      providers: [provideRouter([])],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ProductCard);
@@ -47,5 +49,14 @@ describe('ProductCard', () => {
     expect(image.getAttribute('src')).toBe(product.image);
     expect(image.getAttribute('alt')).toBe(product.title);
     expect(image.getAttribute('loading')).toBe('lazy');
+  });
+
+  it('should link to the product details page', () => {
+    const link = fixture.nativeElement.querySelector(
+      '.product-card__action',
+    ) as HTMLAnchorElement;
+
+    expect(link.getAttribute('href')).toBe(`/products/${product.id}`);
+    expect(link.getAttribute('aria-label')).toContain(product.title);
   });
 });

@@ -104,8 +104,35 @@
   color: #d97706;
 }
 
+.product-card__action {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 0.45rem;
+  margin-top: 1rem;
+  color: var(--color-accent);
+  font-size: 0.875rem;
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.product-card__action:hover {
+  color: var(--color-accent-strong);
+  text-decoration: underline;
+  text-underline-offset: 0.2rem;
+}
+
+.product-card__action span {
+  transition: transform 180ms ease;
+}
+
+.product-card__action:hover span {
+  transform: translateX(0.2rem);
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .product-card {
+  .product-card,
+  .product-card__action span {
     transition: none;
   }
 }
