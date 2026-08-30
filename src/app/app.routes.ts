@@ -15,6 +15,14 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'products/new',
+    title: 'Add product | Product Catalog',
+    loadComponent: () =>
+      import('./products/product-create/product-create').then(
+        ({ ProductCreate }) => ProductCreate,
+      ),
+  },
+  {
     path: 'products/:id',
     title: 'Product details | Product Catalog',
     loadComponent: () =>

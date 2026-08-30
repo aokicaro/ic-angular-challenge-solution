@@ -5,7 +5,7 @@ import {
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { firstValueFrom } from 'rxjs';
-import { Product } from '../models/product.model';
+import { CreateProductInput, Product } from '../models/product.model';
 import { ProductApiService } from './product-api.service';
 
 describe('ProductApiService', () => {
@@ -61,5 +61,25 @@ describe('ProductApiService', () => {
     request.flush(product);
 
     await expect(responsePromise).resolves.toEqual(product);
+  });
+
+  it('should send a product to the Fake Store API', async () => {
+    const productInput: CreateProductInput = {
+      title: product.title,
+      price: product.price,
+      description: product.description,
+      category: product.category,
+      image: product.image,
+    };
+    const createdProduct = { ...productInput, id: 21 };
+
+    const responsePromise = firstValueFrom(service.createProduct(productInput));
+    const request = httpTesting.expectOne('https://fakestoreapi.com/products');
+
+    expect(request.request.method).toBe('POST');
+    expect(request.request.body).toEqual(productInput);
+    request.flush(createdProduct);
+
+    await expect(responsePromise).resolves.toEqual(createdProduct);
   });
 });

@@ -12,3 +12,15 @@ export interface Product {
   image: string;
   rating: ProductRating;
 }
+
+export interface CreateProductInput {
+  title: string;
+  price: number;
+  description: string;
+  category: string;
+  image: string;
+}
+
+export interface CreatedProduct extends CreateProductInput {
+  id: number;
+}

@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 import { provideQueryClient, QueryClient } from '@ngneat/query';
 import { Observable, of, Subject, throwError } from 'rxjs';
 import { ProductApiService } from '../data-access/product-api.service';
@@ -27,6 +28,7 @@ describe('ProductList', () => {
     await TestBed.configureTestingModule({
       imports: [ProductList],
       providers: [
+        provideRouter([]),
         {
           provide: ProductApiService,
           useValue: { getProducts },
