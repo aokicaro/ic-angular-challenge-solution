@@ -1,0 +1,27 @@
+<article class="product-card">
+  <div class="product-card__image-wrap">
+    <img
+      class="product-card__image"
+      [src]="product().image"
+      [alt]="product().title"
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+
+  <div class="product-card__body">
+    <p class="product-card__category">{{ product().category }}</p>
+    <h2 class="product-card__title">{{ product().title }}</h2>
+    <p class="product-card__description">{{ product().description }}</p>
+
+    <div class="product-card__meta">
+      <strong class="product-card__price">
+        {{ product().price | currency: 'USD' : 'symbol' : '1.2-2' }}
+      </strong>
+      <span class="product-card__rating" [attr.aria-label]="product().rating.rate + ' out of 5 stars'">
+        <span aria-hidden="true">★</span>
+        {{ product().rating.rate | number: '1.1-1' }}
+      </span>
+    </div>
+  </div>
+</article>

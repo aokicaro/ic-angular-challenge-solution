@@ -1,0 +1,52 @@
+<section class="catalog" aria-labelledby="catalog-title">
+  <header class="catalog__header">
+    <div>
+      <p class="catalog__eyebrow">Thoughtfully selected essentials</p>
+      <h1 id="catalog-title">Products for everyday life</h1>
+      <p class="catalog__intro">
+        Explore a practical collection of clothing, accessories, and electronics.
+      </p>
+    </div>
+  </header>
+
+  @let state = productsState();
+
+  @if (state.isPending) {
+    <p class="visually-hidden" role="status">Loading products…</p>
+    <ul class="product-grid" aria-hidden="true">
+      @for (_ of loadingCards; track $index) {
+        <li class="skeleton-card">
+          <span class="skeleton-card__image"></span>
+          <span class="skeleton-card__line skeleton-card__line--short"></span>
+          <span class="skeleton-card__line"></span>
+          <span class="skeleton-card__line"></span>
+        </li>
+      }
+    </ul>
+  } @else if (state.isError) {
+    <div class="catalog-message" role="alert">
+      <span class="catalog-message__icon" aria-hidden="true">!</span>
+      <h2>We couldn't load the products</h2>
+      <p>Please check your connection and try again.</p>
+      <button type="button" class="button" (click)="state.refetch()">Try again</button>
+    </div>
+  } @else {
+    @let products = state.data;
+
+    @if (products.length) {
+      <p class="catalog__count" aria-live="polite">{{ products.length }} products</p>
+      <ul class="product-grid">
+        @for (product of products; track product.id) {
+          <li>
+            <app-product-card [product]="product" />
+          </li>
+        }
+      </ul>
+    } @else {
+      <div class="catalog-message">
+        <h2>No products found</h2>
+        <p>The catalog is empty right now. Please check back later.</p>
+      </div>
+    }
+  }
+</section>
