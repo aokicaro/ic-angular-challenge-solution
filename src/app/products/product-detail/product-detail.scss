@@ -1,0 +1,222 @@
+.product-detail-page {
+  width: min(100% - 2rem, 76rem);
+  margin-inline: auto;
+  padding-block: clamp(2rem, 5vw, 4rem) clamp(4rem, 8vw, 7rem);
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  color: var(--color-accent);
+}
+
+.product-detail {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.95fr);
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: center;
+}
+
+.product-detail__image-wrap {
+  display: grid;
+  min-height: clamp(22rem, 55vw, 38rem);
+  place-items: center;
+  padding: clamp(2rem, 6vw, 5rem);
+  border: 1px solid var(--color-border);
+  border-radius: 1.25rem;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+}
+
+.product-detail__image {
+  width: 100%;
+  max-height: 28rem;
+  object-fit: contain;
+}
+
+.product-detail__category {
+  margin: 0 0 0.75rem;
+  color: var(--color-accent);
+  font-size: 0.75rem;
+  font-weight: 750;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.product-detail h1 {
+  margin: 0;
+  color: var(--color-text-strong);
+  font-size: clamp(2rem, 5vw, 3.8rem);
+  letter-spacing: -0.045em;
+  line-height: 1.06;
+}
+
+.product-detail__rating {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 1.25rem;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  font-weight: 650;
+}
+
+.product-detail__rating-value {
+  color: #a85d05;
+}
+
+.product-detail__price {
+  margin: 1.5rem 0;
+  color: var(--color-text-strong);
+  font-size: clamp(1.7rem, 4vw, 2.4rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+}
+
+.product-detail__description {
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.product-detail__description h2 {
+  margin: 0 0 0.75rem;
+  color: var(--color-text-strong);
+  font-size: 1rem;
+}
+
+.product-detail__description p {
+  margin: 0;
+  color: var(--color-text-muted);
+  line-height: 1.75;
+}
+
+.detail-message {
+  display: grid;
+  justify-items: start;
+  max-width: 36rem;
+  padding: clamp(1.75rem, 5vw, 3rem);
+  border: 1px solid var(--color-border);
+  border-radius: 1rem;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+}
+
+.detail-message__code {
+  margin: 0 0 0.5rem;
+  color: var(--color-accent);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.detail-message__icon {
+  display: grid;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-bottom: 1rem;
+  place-items: center;
+  border-radius: 50%;
+  background: #fef2f2;
+  color: #b91c1c;
+  font-weight: 800;
+}
+
+.detail-message h1 {
+  margin: 0;
+  color: var(--color-text-strong);
+  font-size: clamp(1.8rem, 5vw, 2.7rem);
+  letter-spacing: -0.04em;
+}
+
+.detail-message p:not(.detail-message__code) {
+  margin: 0.75rem 0 1.5rem;
+  color: var(--color-text-muted);
+  line-height: 1.65;
+}
+
+.button {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  padding: 0.7rem 1.1rem;
+  border: 0;
+  border-radius: 0.65rem;
+  background: var(--color-accent);
+  color: white;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.button:hover {
+  background: var(--color-accent-strong);
+}
+
+.detail-skeleton {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.95fr);
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: center;
+}
+
+.detail-skeleton__image,
+.detail-skeleton__line {
+  display: block;
+  border-radius: 0.75rem;
+  background: linear-gradient(90deg, #e8e5df 25%, #f5f3ef 50%, #e8e5df 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.detail-skeleton__image {
+  min-height: clamp(22rem, 55vw, 38rem);
+}
+
+.detail-skeleton__line {
+  height: 1rem;
+  margin-top: 1rem;
+}
+
+.detail-skeleton__line--short {
+  width: 35%;
+}
+
+.detail-skeleton__line--title {
+  width: 85%;
+  height: 3.5rem;
+}
+
+@keyframes shimmer {
+  to {
+    background-position-x: -200%;
+  }
+}
+
+@media (max-width: 48rem) {
+  .product-detail,
+  .detail-skeleton {
+    grid-template-columns: 1fr;
+  }
+
+  .product-detail__image-wrap,
+  .detail-skeleton__image {
+    min-height: 22rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .detail-skeleton__image,
+  .detail-skeleton__line {
+    animation: none;
+  }
+}
